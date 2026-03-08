@@ -578,7 +578,142 @@
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── MOBILE ─── */
+    /* ─── RESUME SECTION ─── */
+    .resume-section { background: var(--navy-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .resume-inner { max-width: 1100px; margin: auto; }
+
+    .resume-layout {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem; align-items: center;
+    }
+
+    .resume-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .resume-card:hover { transform: translateY(-6px); box-shadow: 0 28px 80px rgba(0,0,0,0.4); }
+
+    .resume-card-header {
+      background: linear-gradient(135deg, #141c2e, #0f1520);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .resume-dots { display: flex; gap: 0.4rem; }
+    .resume-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .rd-1 { background: #ff5f57; }
+    .rd-2 { background: #ffbd2e; }
+    .rd-3 { background: #28ca41; }
+    .resume-filename {
+      margin-left: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; color: var(--muted);
+    }
+
+    .resume-preview-body {
+      padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .rp-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.4rem;
+      background: linear-gradient(90deg, var(--yellow), var(--coral));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .rp-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; color: var(--teal);
+      letter-spacing: 0.05em; margin-top: -0.6rem;
+    }
+    .rp-divider { height: 1px; background: var(--border); }
+    .rp-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; color: var(--yellow);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .rp-lines { display: flex; flex-direction: column; gap: 0.35rem; }
+    .rp-line {
+      height: 7px; border-radius: 4px;
+      background: rgba(255,255,255,0.07);
+    }
+    .rp-line.w-full  { width: 100%; }
+    .rp-line.w-80    { width: 80%; }
+    .rp-line.w-90    { width: 90%; }
+    .rp-line.w-60    { width: 60%; }
+    .rp-line.w-70    { width: 70%; }
+    .rp-line.accent  { background: rgba(245,200,66,0.2); width: 45%; }
+
+    .rp-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.2rem; }
+    .rp-chip {
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      border: 1px solid rgba(0,212,180,0.3); color: var(--teal);
+      background: rgba(0,212,180,0.06);
+    }
+    .rp-chip.y { border-color: rgba(245,200,66,0.3); color: var(--yellow); background: rgba(245,200,66,0.06); }
+    .rp-chip.p { border-color: rgba(181,124,246,0.3); color: var(--purple); background: rgba(181,124,246,0.06); }
+
+    .resume-badge {
+      position: absolute; top: -12px; right: 20px;
+      background: var(--yellow); color: var(--navy);
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      font-weight: 700; padding: 0.25rem 0.7rem;
+      border-radius: 100px; letter-spacing: 0.05em;
+    }
+
+    .resume-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .resume-info p { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; font-size: 1rem; }
+
+    .resume-highlights { list-style: none; margin-bottom: 2rem; }
+    .resume-highlights li {
+      color: var(--muted); font-size: 0.9rem;
+      line-height: 1.7; padding: 0.3rem 0;
+      padding-left: 1.2rem; position: relative;
+    }
+    .resume-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--yellow); }
+    .resume-highlights li strong { color: var(--white); }
+
+    .resume-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, var(--yellow), #e6b800);
+      color: var(--navy); font-weight: 700;
+      padding: 0.9rem 2rem; border-radius: 8px;
+      text-decoration: none; font-size: 0.95rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-download:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(245,200,66,0.4); }
+    .btn-download-icon { font-size: 1.1rem; }
+
+    .btn-view {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid var(--border);
+      color: var(--white); font-weight: 600;
+      padding: 0.9rem 2rem; border-radius: 8px;
+      text-decoration: none; font-size: 0.95rem;
+      transition: border-color 0.25s, background 0.25s;
+      background: rgba(255,255,255,0.03);
+    }
+    .btn-view:hover { border-color: var(--teal); background: rgba(0,212,180,0.07); color: var(--white); }
+
+    @media (max-width: 900px) {
+      .resume-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ─── END RESUME SECTION ─── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
@@ -609,6 +744,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#resume">Resume</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="menu">☰</button>
@@ -647,6 +783,7 @@
     </div>
     <div class="hero-btns">
       <a href="#contact" class="btn-primary">Get In Touch</a>
+      <a href="AditiDosi_Resume2025.pdf" download class="btn-secondary">Download Resume ↓</a>
       <a href="https://github.com/adosi12" target="_blank" class="btn-secondary">View GitHub →</a>
     </div>
   </div>
@@ -933,6 +1070,99 @@
         <p>Completed a four-year program with focus on algorithms, software engineering, data structures, machine learning, and web technologies.</p>
         <p class="edu-inst">📍 Madhya Pradesh, India · B.E. CSE Batch 2023</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="resume-section" id="resume">
+  <div class="resume-inner">
+    <div class="section-tag fade-up">Resume</div>
+    <h2 class="section-title fade-up">My Resume</h2>
+
+    <div class="resume-layout">
+
+      <!-- Decorative preview card -->
+      <div class="resume-card fade-up">
+        <div class="resume-badge">2025 · Updated</div>
+        <div class="resume-card-header">
+          <div class="resume-dots">
+            <div class="resume-dot rd-1"></div>
+            <div class="resume-dot rd-2"></div>
+            <div class="resume-dot rd-3"></div>
+          </div>
+          <span class="resume-filename">AditiDosi_Resume2025.pdf</span>
+        </div>
+        <div class="resume-preview-body">
+          <div>
+            <div class="rp-name">ADITI DOSI</div>
+            <div class="rp-role">Full Stack Developer · Java · React · Agentic AI</div>
+          </div>
+          <div class="rp-divider"></div>
+          <div>
+            <div class="rp-section-label">Professional Summary</div>
+            <div class="rp-lines">
+              <div class="rp-line w-full"></div>
+              <div class="rp-line w-90"></div>
+              <div class="rp-line w-80"></div>
+            </div>
+          </div>
+          <div>
+            <div class="rp-section-label">Work Experience</div>
+            <div class="rp-line accent"></div>
+            <div class="rp-lines" style="margin-top:0.4rem">
+              <div class="rp-line w-full"></div>
+              <div class="rp-line w-90"></div>
+              <div class="rp-line w-70"></div>
+            </div>
+          </div>
+          <div>
+            <div class="rp-section-label">Tech Skills</div>
+            <div class="rp-chips">
+              <span class="rp-chip">Java</span>
+              <span class="rp-chip y">React</span>
+              <span class="rp-chip">GraphQL</span>
+              <span class="rp-chip y">TypeScript</span>
+              <span class="rp-chip p">Agentic AI</span>
+              <span class="rp-chip">Splunk</span>
+              <span class="rp-chip p">LLMs</span>
+              <span class="rp-chip">Python</span>
+            </div>
+          </div>
+          <div>
+            <div class="rp-section-label">Projects</div>
+            <div class="rp-lines">
+              <div class="rp-line w-80"></div>
+              <div class="rp-line w-60"></div>
+              <div class="rp-line w-70"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info + download -->
+      <div class="resume-info fade-up">
+        <h3>Everything you need,<br/>one click away.</h3>
+        <p>
+          My resume is a concise snapshot of my work as a Full Stack Developer at Deutsche Bank — covering my tech stack, projects, certifications, and my current exploration of Agentic AI and LLM-powered systems.
+        </p>
+        <ul class="resume-highlights">
+          <li><strong>2+ years</strong> at Deutsche Bank — Java, React, TypeScript, GraphQL</li>
+          <li><strong>Agentic AI</strong> — actively learning LangGraph, AutoGen, CrewAI & prompt engineering</li>
+          <li><strong>Rising Star Award</strong> — recognised for outstanding project contributions</li>
+          <li><strong>GCP Professional Developer</strong> certified</li>
+          <li>Projects spanning <strong>ML, Data Analytics, Full-Stack & Hackathons</strong></li>
+        </ul>
+        <div class="resume-btn-group">
+          <a href="AditiDosi_Resume2025.pdf" download class="btn-download">
+            <span class="btn-download-icon">↓</span> Download Resume
+          </a>
+          <a href="AditiDosi_Resume2025.pdf" target="_blank" class="btn-view">
+            View PDF ↗
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
