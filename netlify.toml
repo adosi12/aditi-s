@@ -3,4 +3,4 @@
   functions = "netlify/functions"
 
 [build.environment]
-  GEMINI_API_KEY = "AIzaSyC17nljhz1445nIULkji-mTuUT9WuQoBs4"
+  GEMINI_API_KEY = "AIzaSyCRlu5BeCMTyRAqWCPs30WPA1V387hby6k"
