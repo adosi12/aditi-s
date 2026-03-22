@@ -3,9 +3,4 @@
   functions = "netlify/functions"
 
 [build.environment]
-  ANTHROPIC_API_KEY = "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"
-
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+  GEMINI_API_KEY = "AIzaSyBpwFhlffiAIIqJqlzZlqLvY2wEPUvT-MU"

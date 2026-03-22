@@ -438,51 +438,45 @@ async function generate() {
   out.style.display = 'block';
   out.innerHTML = '<span class="stream-cursor"></span>';
 
-  try {
-  const response = await fetch('/.netlify/functions/claude', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      messages: [{ role: 'user', content: buildPrompt() }],
-    }),
-  });
-
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error?.message || 'API error');
-  }
-
-  const data = await response.json();
-  const fullText = data.content?.[0]?.text || '';
-
-  if (!fullText) throw new Error('Empty response from API');
-
-  out.innerHTML = fullText.replace(/\n/g, '<br/>');
-
-  versions.push({ text: fullText, company, role, tone: activeTone });
-  currentVer = versions.length - 1;
-  renderVersions();
-
-  document.getElementById('copyBtn').style.display = 'inline-block';
-  document.getElementById('dlBtn').style.display = 'inline-block';
-  document.getElementById('metaRow').style.display = 'flex';
-  document.getElementById('metaCompany').textContent = company;
-  document.getElementById('metaTone').textContent = activeTone;
-  document.getElementById('metaWords').textContent =
-    fullText.split(/\s+/).filter(Boolean).length + ' words';
-
-} catch (err) {
-  out.style.display = 'none';
-  document.getElementById('placeholder').style.display = 'flex';
-  errBox.textContent = 'Generation failed: ' + err.message;
-  errBox.style.display = 'block';
-} finally {
+try {
+    const response = await fetch('/.netlify/functions/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: buildPrompt() }),
+    });
+ 
+    const data = await response.json();
+ 
+    if (!response.ok) {
+      throw new Error(data.error || 'API error');
+    }
+ 
+    const fullText = data.text || '';
+    if (!fullText) throw new Error('Empty response — please try again');
+ 
+    out.innerHTML = fullText.replace(/\n/g, '<br/>');
+ 
+    versions.push({ text: fullText, company, role, tone: activeTone });
+    currentVer = versions.length - 1;
+    renderVersions();
+ 
+    document.getElementById('copyBtn').style.display = 'inline-block';
+    document.getElementById('dlBtn').style.display = 'inline-block';
+    document.getElementById('metaRow').style.display = 'flex';
+    document.getElementById('metaCompany').textContent = company;
+    document.getElementById('metaTone').textContent = activeTone;
+    document.getElementById('metaWords').textContent =
+      fullText.split(/\s+/).filter(Boolean).length + ' words';
+ 
+  } catch (err) {
+    out.style.display = 'none';
+    document.getElementById('placeholder').style.display = 'flex';
+    errBox.textContent = 'Generation failed: ' + err.message;
+    errBox.style.display = 'block';
+  } finally {
     btn.disabled = false;
     label.textContent = '✦ Regenerate';
   }
-}
 
 function renderVersions() {
   const row = document.getElementById('versionRow');

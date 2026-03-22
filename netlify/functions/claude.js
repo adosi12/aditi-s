@@ -5,31 +5,91 @@ exports.handler = async (event) => {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
       },
       body: '',
     };
   }
 
-  const body = JSON.parse(event.body);
-  delete body.stream;
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'Method not allowed' }),
+    };
+  }
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
+  if (!process.env.GEMINI_API_KEY) {
+    return {
+      statusCode: 500,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'GEMINI_API_KEY is not set in environment variables' }),
+    };
+  }
+
+  let parsedBody;
+  try {
+    parsedBody = JSON.parse(event.body);
+  } catch (e) {
+    return {
+      statusCode: 400,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'Invalid JSON in request body' }),
+    };
+  }
+
+  const prompt = parsedBody.prompt || '';
+
+  const geminiPayload = {
+    contents: [
+      {
+        parts: [{ text: prompt }],
+      },
+    ],
+    generationConfig: {
+      temperature: 0.8,
+      maxOutputTokens: 1024,
     },
-    body: JSON.stringify(body),
-  });
+  };
 
-  const data = await res.json();
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(geminiPayload),
+    }
+  );
+
+  const rawText = await res.text();
+
+  let data;
+  try {
+    data = JSON.parse(rawText);
+  } catch (e) {
+    return {
+      statusCode: 500,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: 'Gemini returned invalid JSON: ' + rawText.slice(0, 200) }),
+    };
+  }
+
+  if (!res.ok) {
+    return {
+      statusCode: res.status,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ error: data.error?.message || 'Gemini API error' }),
+    };
+  }
+
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
   return {
-    statusCode: res.status,
+    statusCode: 200,
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ text }),
   };
 };
