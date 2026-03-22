@@ -1,2 +1,6 @@
 [build]
   publish = "aditi-s-main"
+  functions = "netlify/functions"
+
+[build.environment]
+  ANTHROPIC_API_KEY = "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"
