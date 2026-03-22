@@ -19,14 +19,6 @@ exports.handler = async (event) => {
     };
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return {
-      statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: 'GEMINI_API_KEY is not set in environment variables' }),
-    };
-  }
-
   let parsedBody;
   try {
     parsedBody = JSON.parse(event.body);
