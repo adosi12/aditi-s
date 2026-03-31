@@ -3,4 +3,3 @@
   functions = "netlify/functions"
 
 [build.environment]
-  GEMINI_API_KEY = "API_KEY"
