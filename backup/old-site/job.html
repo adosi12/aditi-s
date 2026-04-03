@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jobs Board — Aditi Dosi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/job-styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Aditi Dosi</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="job.html" class="active">Jobs</a></li>
+    <li><a href="cover-letter.html">Cover Letter</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Back to portfolio</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-tag">// curated for full stack · 25L+ · India</p>
+  <h1 class="page-title">Jobs <em>Board</em></h1>
+  <p class="page-sub">Hand-picked full stack openings across Pune, Bangalore, Hyderabad, NCR and Mumbai. Updated every 48 hours via the n8n automation workflow.</p>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('listings',this)">Listings</button>
+    <button class="tab-btn" onclick="showTab('benefits',this)">Parental Benefits</button>
+  </div>
+
+  <!-- LISTINGS TAB -->
+  <div class="tab-panel active" id="tab-listings">
+
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-input" id="srch" placeholder="Search role, company, skill, city…" oninput="render()"/>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-row">
+        <span class="filter-label">City</span>
+        <button class="chip on" data-v="all" onclick="pf(this,'city')">All</button>
+        <button class="chip cp" data-v="pune" onclick="pf(this,'city')">Pune</button>
+        <button class="chip" data-v="blr" onclick="pf(this,'city')">Bangalore</button>
+        <button class="chip" data-v="hyd" onclick="pf(this,'city')">Hyderabad</button>
+        <button class="chip" data-v="ncr" onclick="pf(this,'city')">NCR</button>
+        <button class="chip" data-v="mum" onclick="pf(this,'city')">Mumbai</button>
+        <button class="chip" data-v="remote" onclick="pf(this,'city')">Remote</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Tier</span>
+        <button class="chip on" data-v="all" onclick="pf(this,'tier')">All cos</button>
+        <button class="chip" data-v="mnc" onclick="pf(this,'tier')">MNC only</button>
+        <button class="chip" data-v="startup" onclick="pf(this,'tier')">Startups</button>
+        <button class="chip pb" data-v="parental" onclick="pf(this,'tier')">Parental benefits ♥</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Role</span>
+        <button class="chip on" data-v="all" onclick="pf(this,'role')">All</button>
+        <button class="chip" data-v="react" onclick="pf(this,'role')">React</button>
+        <button class="chip" data-v="node" onclick="pf(this,'role')">Node.js</button>
+        <button class="chip" data-v="python" onclick="pf(this,'role')">Python</button>
+        <button class="chip" data-v="lead" onclick="pf(this,'role')">Lead+</button>
+        <button class="chip" data-v="java" onclick="pf(this,'role')">Java</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Pay</span>
+        <button class="chip sal on" data-v="25" onclick="pf(this,'sal')">25L+</button>
+        <button class="chip sal" data-v="40" onclick="pf(this,'sal')">40L+</button>
+        <button class="chip sal" data-v="60" onclick="pf(this,'sal')">60L+</button>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-n" id="sT">—</div><div class="stat-l">Listings</div></div>
+      <div class="stat-box"><div class="stat-n" id="sP">—</div><div class="stat-l">In Pune</div></div>
+      <div class="stat-box"><div class="stat-n" id="sPB">—</div><div class="stat-l">Parental benefits</div></div>
+      <div class="stat-box"><div class="stat-n" id="sTP">—</div><div class="stat-l">Top pay</div></div>
+    </div>
+
+    <div class="sort-row">
+      <span class="sort-lbl">Sort:</span>
+      <button class="sort-btn on" data-s="date" onclick="ps(this)">Newest</button>
+      <button class="sort-btn" data-s="sal" onclick="ps(this)">Salary ↓</button>
+      <button class="sort-btn" data-s="co" onclick="ps(this)">Company A–Z</button>
+    </div>
+
+    <div id="jlist"></div>
+  </div>
+
+  <!-- PARENTAL BENEFITS TAB -->
+  <div class="tab-panel" id="tab-benefits">
+    <div class="ben-grid">
+
+      <div class="ben-card top">
+        <div class="ben-head">
+          <div class="ben-co">Atlassian</div>
+          <span class="ben-grade A">Grade A+</span>
+        </div>
+        <div class="ben-locs">Bangalore (India HQ) · Remote-first globally</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>26 weeks</strong> fully paid parental leave for birthing parents</div></div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>20 weeks</strong> fully paid leave for non-birthing parents (partners, adoption)</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Comprehensive family health insurance including newborn coverage from day one</div></div>
+        <div class="ben-item"><div class="ben-dot green"></div><div>Mental health platform access for parents and children included</div></div>
+        <a class="ben-url" href="https://www.atlassian.com/company/careers/resources/perk-and-benefits/global/india" target="_blank">atlassian.com/careers/benefits/india →</a>
+      </div>
+
+      <div class="ben-card top">
+        <div class="ben-head">
+          <div class="ben-co">Goldman Sachs</div>
+          <span class="ben-grade A">Grade A</span>
+        </div>
+        <div class="ben-locs">Bangalore · Hyderabad · Mumbai</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>20 weeks</strong> fully paid (100% salary) for birth parents</div></div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>20 weeks</strong> fully paid for non-birth parents — identical policy, no discrimination</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Comprehensive health, life and disability insurance — consistently top-rated by India employees</div></div>
+        <div class="ben-item"><div class="ben-dot green"></div><div>Adoption, surrogacy, egg donation and retrieval stipends available globally</div></div>
+        <div class="ben-item"><div class="ben-dot gray"></div><div>On-site childcare centres, mother and baby rooms, transitional return-to-work program</div></div>
+        <a class="ben-url" href="https://www.goldmansachs.com/careers/benefits" target="_blank">goldmansachs.com/careers/benefits →</a>
+      </div>
+
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-co">Google India</div>
+          <span class="ben-grade A">Grade A</span>
+        </div>
+        <div class="ben-locs">Bangalore · Hyderabad · Mumbai · Gurugram</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>18–24 weeks</strong> paid maternity leave; <strong>12 weeks</strong> paternity leave in India</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Family health insurance covering spouse, children, parents and in-laws</div></div>
+        <div class="ben-item"><div class="ben-dot green"></div><div>Fertility treatment, adoption assistance, and baby bonding leave</div></div>
+        <div class="ben-item"><div class="ben-dot gray"></div><div>On-site crèche, childcare reimbursement, return-to-work coaching</div></div>
+        <a class="ben-url" href="https://careers.google.com/intl/en_in/benefits/" target="_blank">careers.google.com/intl/en_in/benefits →</a>
+      </div>
+
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-co">Microsoft India</div>
+          <span class="ben-grade A">Grade A</span>
+        </div>
+        <div class="ben-locs">Bengaluru · Hyderabad · Gurugram · Noida · Mumbai</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>26 weeks</strong> paid maternity; <strong>12 weeks</strong> paternity leave in India</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Comprehensive family health insurance including parents</div></div>
+        <div class="ben-item"><div class="ben-dot green"></div><div>Fertility and family planning support, miscarriage leave, adoption leave</div></div>
+        <a class="ben-url" href="https://careers.microsoft.com/v2/global/en/benefits.html" target="_blank">careers.microsoft.com/benefits →</a>
+      </div>
+
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-co">Persistent Systems</div>
+          <span class="ben-grade B">Grade B+</span>
+        </div>
+        <div class="ben-locs">Pune (HQ) · Bangalore · Hyderabad</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>26 weeks</strong> statutory maternity (fully paid) + <strong>2 weeks</strong> paternity</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Group health insurance with family floater — newborns covered from birth</div></div>
+        <div class="ben-item"><div class="ben-dot gray"></div><div>Crèche allowance and child education support programs</div></div>
+      </div>
+
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-co">Icertis</div>
+          <span class="ben-grade B">Grade B+</span>
+        </div>
+        <div class="ben-locs">Pune · Hyderabad</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div><strong>26 weeks</strong> maternity + <strong>15 days</strong> paternity leave</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Family health insurance with top-up option for higher coverage</div></div>
+        <div class="ben-item"><div class="ben-dot gray"></div><div>Flexible remote options available post-parental leave</div></div>
+      </div>
+
+      <div class="ben-card">
+        <div class="ben-head">
+          <div class="ben-co">Dhruva Software</div>
+          <span class="ben-grade B">Grade B</span>
+        </div>
+        <div class="ben-locs">Pune (HQ) · Bangalore</div>
+        <div class="ben-item"><div class="ben-dot pink"></div><div>Statutory 26 weeks maternity + paternity leave per company policy</div></div>
+        <div class="ben-item"><div class="ben-dot blue"></div><div>Group medical insurance covering family members</div></div>
+        <div class="ben-item"><div class="ben-dot gray"></div><div>Flexible schedules; gaming-focused culture and perks</div></div>
+        <a class="ben-url" href="https://www.dhruvagames.com/careers" target="_blank">dhruvagames.com/careers →</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-left">ADITI DOSI · Full Stack Developer · Pune, India</span>
+  <div class="footer-right">
+    <a href="cover-letter.html" class="footer-link">Cover Letter AI →</a>
+    <a href="index.html#contact" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+const CL={pune:'b-pune',blr:'b-blr',hyd:'b-hyd',ncr:'b-ncr',mum:'b-mum'};
+const CN={pune:'Pune',blr:'Blr',hyd:'Hyd',ncr:'NCR',mum:'Mum'};
+
+const JOBS=[
+  // PUNE — MNC
+  {id:1,t:'Senior Full Stack Engineer',co:'Persistent Systems',logo:'PS',city:'pune',rem:false,smin:28,smax:50,sk:['React','Java','Spring Boot'],src:'Naukri',url:'https://www.naukri.com/persistent-systems-jobs-in-pune',h:.5,hot:true,type:'mnc',pb:true},
+  {id:2,t:'Full Stack Developer – SaaS',co:'NICE Systems',logo:'NC',city:'pune',rem:true,smin:32,smax:55,sk:['React','Node.js','TypeScript'],src:'LinkedIn',url:'https://www.linkedin.com/jobs/search/?keywords=full+stack+nice+pune',h:1.5,hot:false,type:'mnc',pb:true},
+  {id:3,t:'Senior SDE – Contract Platform',co:'Icertis',logo:'IC',city:'pune',rem:false,smin:40,smax:65,sk:['React','C#','.NET'],src:'LinkedIn',url:'https://www.linkedin.com/jobs/search/?keywords=senior+sde+icertis+pune',h:2,hot:true,type:'mnc',pb:true},
+  {id:4,t:'Full Stack Engineer – Observability',co:'LogicMonitor',logo:'LM',city:'pune',rem:true,smin:45,smax:70,sk:['React','Node.js','Go'],src:'Wellfound',url:'https://wellfound.com/company/logicmonitor/jobs',h:3,hot:true,type:'mnc',pb:false},
+  {id:5,t:'Full Stack SDE-2',co:'Cummins Digital',logo:'CM',city:'pune',rem:false,smin:30,smax:48,sk:['React','Python','FastAPI'],src:'Naukri',url:'https://www.naukri.com/cummins-jobs-in-pune',h:4,hot:false,type:'mnc',pb:false},
+  {id:6,t:'Senior Software Engineer',co:'Veritas Technologies',logo:'VT',city:'pune',rem:false,smin:35,smax:60,sk:['React','Java','Kubernetes'],src:'LinkedIn',url:'https://www.linkedin.com/jobs/search/?keywords=senior+software+engineer+veritas+pune',h:5,hot:false,type:'mnc',pb:false},
+  // PUNE — Dhruva
+  {id:7,t:'Full Stack Engineer – Game Tools',co:'Dhruva Software',logo:'DH',city:'pune',rem:false,smin:28,smax:48,sk:['React','Node.js','Unity WebGL'],src:'LinkedIn',url:'https://www.dhruvagames.com/careers',h:3,hot:true,type:'mnc',pb:true},
+  // PUNE — Startups
+  {id:8,t:'Senior Full Stack Developer',co:'Facilio',logo:'FC',city:'pune',rem:true,smin:28,smax:45,sk:['React','Node.js','MongoDB'],src:'CutShort',url:'https://cutshort.io/company/facilio',h:1,hot:true,type:'startup',pb:false},
+  {id:9,t:'Full Stack Engineer (MERN)',co:'NonStop io',logo:'NS',city:'pune',rem:true,smin:25,smax:42,sk:['React','Node.js','PostgreSQL'],src:'CutShort',url:'https://cutshort.io/jobs/startup-jobs-in-pune',h:2.5,hot:false,type:'startup',pb:false},
+  {id:10,t:'Lead Full Stack – Drone Tech',co:'Ideaforge',logo:'IF',city:'pune',rem:false,smin:30,smax:50,sk:['React','Python','Embedded'],src:'Wellfound',url:'https://wellfound.com/company/ideaforge',h:3.5,hot:true,type:'startup',pb:false},
+  // BANGALORE — Big MNC
+  {id:11,t:'Senior Software Engineer – Jira',co:'Atlassian',logo:'AT',city:'blr',rem:true,smin:60,smax:100,sk:['React','Node.js','TypeScript'],src:'Atlassian Careers',url:'https://www.atlassian.com/company/careers/all-jobs',h:.8,hot:true,type:'mnc',pb:true},
+  {id:12,t:'Software Engineer II – Full Stack',co:'Google',logo:'GO',city:'blr',rem:false,smin:60,smax:110,sk:['React','Python','Go'],src:'Google Careers',url:'https://careers.google.com/jobs/results/?location=Bangalore%2C+Karnataka%2C+India',h:1.2,hot:true,type:'mnc',pb:true},
+  {id:13,t:'Software Engineer – Azure Platform',co:'Microsoft',logo:'MS',city:'blr',rem:false,smin:50,smax:95,sk:['React','TypeScript','C#'],src:'Microsoft Careers',url:'https://careers.microsoft.com/v2/global/en/locations/india.html',h:2,hot:true,type:'mnc',pb:true},
+  {id:14,t:'Full Stack Engineer – Strats',co:'Goldman Sachs',logo:'GS',city:'blr',rem:false,smin:55,smax:95,sk:['React','Java','Python'],src:'GS Careers',url:'https://www.goldmansachs.com/careers',h:2.5,hot:true,type:'mnc',pb:true},
+  {id:15,t:'Full Stack Engineer – AI SaaS',co:'Sarvam AI',logo:'SA',city:'blr',rem:true,smin:40,smax:65,sk:['Python','React','LLMs'],src:'Wellfound',url:'https://wellfound.com/company/sarvam-ai',h:2,hot:true,type:'startup',pb:false},
+  {id:16,t:'Staff Software Engineer',co:'CRED',logo:'CR',city:'blr',rem:false,smin:50,smax:80,sk:['Go','React','Microservices'],src:'Naukri',url:'https://www.naukri.com/cred-jobs',h:1,hot:true,type:'startup',pb:false},
+  {id:17,t:'Lead Full Stack Developer',co:'Dhruva Software',logo:'DH',city:'blr',rem:false,smin:35,smax:55,sk:['React','Python','WebGL'],src:'Naukri',url:'https://www.dhruvagames.com/careers',h:6,hot:false,type:'mnc',pb:true},
+  {id:18,t:'Senior Full Stack Engineer',co:'Razorpay',logo:'RZ',city:'blr',rem:false,smin:35,smax:55,sk:['React','Node.js','TypeScript'],src:'LinkedIn',url:'https://www.linkedin.com/jobs/search/?keywords=senior+full+stack+razorpay',h:.3,hot:true,type:'startup',pb:false},
+  // HYDERABAD
+  {id:19,t:'Software Engineer – Engineering',co:'Goldman Sachs',logo:'GS',city:'hyd',rem:false,smin:50,smax:90,sk:['React','Java','Python'],src:'GS Careers',url:'https://www.goldmansachs.com/careers',h:3,hot:true,type:'mnc',pb:true},
+  {id:20,t:'Software Engineer II',co:'Microsoft',logo:'MS',city:'hyd',rem:false,smin:50,smax:90,sk:['React','TypeScript','Azure'],src:'Microsoft Careers',url:'https://careers.microsoft.com/v2/global/en/locations/india.html',h:4,hot:true,type:'mnc',pb:true},
+  {id:21,t:'Software Engineer – Cloud AI',co:'Google',logo:'GO',city:'hyd',rem:false,smin:60,smax:105,sk:['Python','React','TensorFlow'],src:'Google Careers',url:'https://careers.google.com/jobs/results/?location=Hyderabad%2C+Telangana%2C+India',h:5,hot:false,type:'mnc',pb:true},
+  // NCR
+  {id:22,t:'Senior Software Engineer',co:'Microsoft',logo:'MS',city:'ncr',rem:false,smin:48,smax:88,sk:['React','C#','TypeScript'],src:'Microsoft Careers',url:'https://careers.microsoft.com/v2/global/en/locations/india.html',h:6,hot:false,type:'mnc',pb:true},
+  {id:23,t:'Full Stack Engineer – GCP',co:'Google',logo:'GO',city:'ncr',rem:false,smin:55,smax:100,sk:['React','Node.js','Go'],src:'Google Careers',url:'https://careers.google.com/jobs/results/?location=Gurugram%2C+Haryana%2C+India',h:7,hot:false,type:'mnc',pb:true},
+  // MUMBAI
+  {id:24,t:'Technology Analyst – Full Stack',co:'Goldman Sachs',logo:'GS',city:'mum',rem:false,smin:40,smax:70,sk:['React','Java','Spring'],src:'GS Careers',url:'https://www.goldmansachs.com/careers',h:4,hot:false,type:'mnc',pb:true},
+  {id:25,t:'Software Engineer – Cloud',co:'Google',logo:'GO',city:'mum',rem:false,smin:55,smax:95,sk:['React','Python','GCP'],src:'Google Careers',url:'https://careers.google.com/jobs/results/?location=Mumbai%2C+Maharashtra%2C+India',h:10,hot:false,type:'mnc',pb:true},
+];
+
+let fCity='all',fTier='all',fRole='all',fSal=25,fSort='date';
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+function pf(btn,type){
+  btn.closest('.filter-row').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  if(type==='city') fCity=btn.dataset.v;
+  else if(type==='tier') fTier=btn.dataset.v;
+  else if(type==='role') fRole=btn.dataset.v;
+  else fSal=parseInt(btn.dataset.v);
+  render();
+}
+function ps(btn){
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); fSort=btn.dataset.s; render();
+}
+function tAgo(h){
+  if(h<.1) return 'just now';
+  if(h<1) return Math.round(h*60)+'m ago';
+  if(h<24) return Math.round(h)+'h ago';
+  return Math.floor(h/24)+'d ago';
+}
+function render(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  let jobs=JOBS.filter(j=>{
+    const txt=`${j.t} ${j.co} ${j.sk.join(' ')} ${j.city}`.toLowerCase();
+    if(q&&!txt.includes(q)) return false;
+    if(j.smin<fSal) return false;
+    if(fCity!=='all'&&fCity!=='remote'&&j.city!==fCity) return false;
+    if(fCity==='remote'&&!j.rem) return false;
+    if(fTier==='mnc'&&j.type!=='mnc') return false;
+    if(fTier==='startup'&&j.type!=='startup') return false;
+    if(fTier==='parental'&&!j.pb) return false;
+    if(fRole==='react'&&!j.sk.some(s=>s.toLowerCase().includes('react'))) return false;
+    if(fRole==='node'&&!j.sk.some(s=>s.toLowerCase().includes('node'))) return false;
+    if(fRole==='python'&&!j.sk.some(s=>s.toLowerCase().includes('python'))) return false;
+    if(fRole==='java'&&!j.sk.some(s=>s.toLowerCase().includes('java'))) return false;
+    if(fRole==='lead'&&!/lead|architect|principal|staff|manager/i.test(j.t)) return false;
+    return true;
+  });
+  if(fSort==='sal') jobs.sort((a,b)=>b.smax-a.smax);
+  else if(fSort==='co') jobs.sort((a,b)=>a.co.localeCompare(b.co));
+  else jobs.sort((a,b)=>a.h-b.h);
+
+  document.getElementById('sT').textContent=jobs.length;
+  document.getElementById('sP').textContent=jobs.filter(j=>j.city==='pune').length;
+  document.getElementById('sPB').textContent=jobs.filter(j=>j.pb).length;
+  document.getElementById('sTP').textContent=jobs.length?Math.max(...jobs.map(j=>j.smax))+'L':'—';
+
+  if(!jobs.length){document.getElementById('jlist').innerHTML='<div class="empty">No jobs match your filters.</div>';return;}
+
+  const order=['pune','blr','hyd','ncr','mum'];
+  let html='';
+  if(fCity==='all'||fCity==='remote'){
+    order.forEach(c=>{
+      const g=jobs.filter(j=>j.city===c);
+      if(!g.length) return;
+      html+=`<div class="sec-div">${CN[c]} <span class="sec-count">${g.length}</span></div>`;
+      html+=g.map(card).join('');
+    });
+  } else {
+    html+=jobs.map(card).join('');
+  }
+  document.getElementById('jlist').innerHTML=html;
+}
+function card(j){
+  const cb=`<span class="badge ${CL[j.city]}">${CN[j.city]}</span>`;
+  const pb=j.pb?'<span class="badge b-pb">parental ♥</span>':'';
+  const rb=j.rem?'<span class="badge b-rem">remote</span>':'';
+  const hb=j.hot?'<span class="badge b-hot">hot</span>':'';
+  const tb=j.type==='mnc'?'<span class="badge b-mnc">MNC</span>':'<span class="badge b-start">startup</span>';
+  return `<a class="jcard" href="${j.url}" target="_blank" rel="noopener">
+    <div class="jlogo">${j.logo}</div>
+    <div>
+      <div class="jtitle">${j.t} ${hb}</div>
+      <div class="jco">${j.co}</div>
+      <div class="jtags">${cb}${tb}${pb}${rb}${j.sk.map(s=>`<span class="jtag">${s}</span>`).join('')}<span class="jsrc">${j.src}</span></div>
+    </div>
+    <div class="jright"><div class="jsal">₹${j.smin}–${j.smax}L</div><div class="jage">${tAgo(j.h)}</div></div>
+  </a>`;
+}
+render();
+</script>
+</body>
+</html>

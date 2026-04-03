@@ -1,0 +1,38 @@
+{
+  "cheatsheets": [
+    {
+      "title": "React 19 & Next.js 15 Quick Start",
+      "description": "A concise guide to the latest features in React and Next.js.",
+      "type": "PDF",
+      "link": "/AditiDosi_Resume2025.pdf"
+    },
+    {
+      "title": "Java Stream API Cheatsheet",
+      "description": "Master functional programming in Java with this handy guide.",
+      "type": "PDF",
+      "link": "/AditiDosi_Resume2025.pdf"
+    },
+    {
+      "title": "Tailwind CSS Best Practices",
+      "description": "Speed up your styling workflow with these essential tips.",
+      "type": "PDF",
+      "link": "/AditiDosi_Resume2025.pdf"
+    }
+  ],
+  "courses": [
+    {
+      "title": "Building Financial Systems with Java",
+      "description": "Learn the principles of building resilient systems at scale.",
+      "platform": "YouTube",
+      "duration": "2.5 hours",
+      "link": "https://youtube.com"
+    },
+    {
+      "title": "Agentic AI: The Future of Automation",
+      "description": "Understanding LLM agents and how to build them.",
+      "platform": "Vimeo",
+      "duration": "1.5 hours",
+      "link": "https://vimeo.com"
+    }
+  ]
+}
