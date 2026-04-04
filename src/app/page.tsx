@@ -29,7 +29,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="/AditiDosi_Resume2025.pdf"
+                  href="/AditiDosi_Resume2026.docx"
                   download
                   className="bg-foreground text-background px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all shadow-xl shadow-foreground/5"
                 >

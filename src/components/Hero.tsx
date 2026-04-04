@@ -39,7 +39,7 @@ export default function Hero() {
               Get In Touch
             </Link>
             <a
-              href="/AditiDosi_Resume2025.pdf"
+              href="/AditiDosi_Resume2026.docx"
               download
               className="bg-card text-foreground border border-card-border px-8 py-3 rounded-full font-bold transition-all backdrop-blur-sm hover:bg-card/80"
             >

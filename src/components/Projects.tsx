@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { GitBranch, ExternalLink } from 'lucide-react';
+import { GitBranch, ExternalLink, Brain, Sprout, Newspaper, Mic, PenTool } from 'lucide-react';
 
 const projects = [
   {
@@ -32,7 +32,7 @@ const projects = [
     title: 'The Daily Dispatch',
     description: 'A React-powered newsletter web app — curated content delivered in a clean, readable format with smooth UX.',
     tech: ['React', 'JavaScript', 'Vercel'],
-    image: '/assets/images/powerbi.jpg',
+    image: '/assets/images/DailyDispatch.jpg',
     github: '#',
     live: 'https://my-newsletter-mauve.vercel.app/',
   },
@@ -40,7 +40,7 @@ const projects = [
     title: 'Dev & Voice',
     description: 'A daily journaling platform combining developer reflections with voice. Supports audio recording and rich posts.',
     tech: ['JavaScript', 'HTML/CSS', 'Vercel'],
-    image: '/assets/images/facerecognition.jpg',
+    image: '/assets/images/DevVoice.jpg',
     github: '#',
     live: 'https://dev-and-voice-5zmav8tvj-adosi12s-projects.vercel.app/',
   },
@@ -48,7 +48,7 @@ const projects = [
     title: 'Believe In Yourself',
     description: 'A personal blog dedicated to self-improvement, technical reflections, and sharing creative ideas.',
     tech: ['WordPress', 'Blogging', 'Content'],
-    image: '/assets/images/bhp_website.png',
+    image: '/assets/images/BelieveOnYourself.jpg',
     github: '#',
     live: 'https://believeonyourself.art.blog/',
   },
@@ -59,7 +59,8 @@ const hackathonProjects = [
     title: 'AI Assistant for Dementia Patients',
     description: 'Voice & text AI assistant designed to support dementia patients with context-aware, empathetic interactions.',
     tech: ['AI', 'Voice', 'Text Interface'],
-    image: '/assets/images/facerecognition.jpg',
+    icon: <Brain className="w-12 h-12 text-pink-500" />,
+    color: 'bg-pink-500/10',
     github: 'https://github.com/adosi12/CogCrafters',
     live: '#',
   },
@@ -67,7 +68,8 @@ const hackathonProjects = [
     title: 'FarmerConnect — n8n AI Workflow Platform',
     description: 'End-to-end automated platform enabling farmers to apply for financial aid and receive personalised AI advice in any language.',
     tech: ['n8n', 'AI', 'Multilingual', 'Automation'],
-    image: '/assets/images/powerbi.jpg',
+    icon: <Sprout className="w-12 h-12 text-green-500" />,
+    color: 'bg-green-500/10',
     github: '#',
     live: '#',
   },
@@ -134,12 +136,8 @@ export default function Projects() {
                 viewport={{ once: true }}
                 className="group relative rounded-3xl overflow-hidden bg-card border border-card-border hover:border-coral/30 transition-all flex flex-col"
               >
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className={`relative aspect-video flex items-center justify-center ${project.color} group-hover:scale-105 transition-transform duration-500`}>
+                  {project.icon}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
                       <GitBranch size={20} />
