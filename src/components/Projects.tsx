@@ -5,25 +5,68 @@ import { GitBranch, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Financial Dashboard',
-    description: 'A real-time dashboard for monitoring financial transactions and portfolio performance.',
-    tech: ['Next.js', 'TypeScript', 'Chart.js', 'Tailwind'],
+    title: 'Freehold Price Predictor',
+    description: 'Full-stack real estate price prediction website with a Python/Flask backend serving an ML regression model.',
+    tech: ['Python', 'Flask', 'ML', 'React'],
     image: '/assets/images/bhp_website.png',
-    github: '#',
+    github: 'https://github.com/adosi12/Freehold-Price-Predict',
     live: '#',
   },
   {
-    title: 'AI Face Recognition',
-    description: 'Security system utilizing computer vision for real-time face identification.',
-    tech: ['Python', 'OpenCV', 'TensorFlow', 'React'],
+    title: 'Contestant Disposer',
+    description: 'Sports celebrity image classification using ML. Built a pipeline to classify sports personalities using CV algorithms.',
+    tech: ['Python', 'ML', 'OpenCV'],
     image: '/assets/images/facerecognition.jpg',
-    github: '#',
+    github: 'https://github.com/adosi12/contestantdisposer',
     live: '#',
   },
   {
     title: 'Power BI Analytics',
-    description: 'Advanced data visualization and business intelligence for corporate reports.',
-    tech: ['Power BI', 'SQL', 'Python'],
+    description: 'End-to-end data analytics project transforming raw sales data into actionable business intelligence dashboards.',
+    tech: ['Power BI', 'SQL', 'Analytics'],
+    image: '/assets/images/powerbi.jpg',
+    github: '#',
+    live: '#',
+  },
+  {
+    title: 'The Daily Dispatch',
+    description: 'A React-powered newsletter web app — curated content delivered in a clean, readable format with smooth UX.',
+    tech: ['React', 'JavaScript', 'Vercel'],
+    image: '/assets/images/powerbi.jpg',
+    github: '#',
+    live: 'https://my-newsletter-mauve.vercel.app/',
+  },
+  {
+    title: 'Dev & Voice',
+    description: 'A daily journaling platform combining developer reflections with voice. Supports audio recording and rich posts.',
+    tech: ['JavaScript', 'HTML/CSS', 'Vercel'],
+    image: '/assets/images/facerecognition.jpg',
+    github: '#',
+    live: 'https://dev-and-voice-5zmav8tvj-adosi12s-projects.vercel.app/',
+  },
+  {
+    title: 'Believe In Yourself',
+    description: 'A personal blog dedicated to self-improvement, technical reflections, and sharing creative ideas.',
+    tech: ['WordPress', 'Blogging', 'Content'],
+    image: '/assets/images/bhp_website.png',
+    github: '#',
+    live: 'https://believeonyourself.art.blog/',
+  },
+];
+
+const hackathonProjects = [
+  {
+    title: 'AI Assistant for Dementia Patients',
+    description: 'Voice & text AI assistant designed to support dementia patients with context-aware, empathetic interactions.',
+    tech: ['AI', 'Voice', 'Text Interface'],
+    image: '/assets/images/facerecognition.jpg',
+    github: 'https://github.com/adosi12/CogCrafters',
+    live: '#',
+  },
+  {
+    title: 'FarmerConnect — n8n AI Workflow Platform',
+    description: 'End-to-end automated platform enabling farmers to apply for financial aid and receive personalised AI advice in any language.',
+    tech: ['n8n', 'AI', 'Multilingual', 'Automation'],
     image: '/assets/images/powerbi.jpg',
     github: '#',
     live: '#',
@@ -32,12 +75,12 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="py-24 bg-black text-white" id="projects">
+    <section className="py-24 bg-background text-foreground" id="projects">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-black mb-16 tracking-tighter text-right">
-          Selected <span className="text-blue-500">/</span> Projects
+          Projects
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -45,7 +88,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-white/20 transition-all flex flex-col"
+              className="group relative rounded-3xl overflow-hidden bg-card border border-card-border hover:border-blue-400/30 transition-all flex flex-col"
             >
               <div className="relative aspect-video overflow-hidden">
                 <img
@@ -54,20 +97,20 @@ export default function Projects() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
-                  <a href={project.github} className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
                     <GitBranch size={20} />
                   </a>
-                  <a href={project.live} className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
                     <ExternalLink size={20} />
                   </a>
                 </div>
               </div>
               <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-6 flex-grow">{project.description}</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors text-foreground">{project.title}</h3>
+                <p className="text-muted text-sm mb-6 flex-grow">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tech.map((t) => (
-                    <span key={t} className="text-[10px] uppercase tracking-widest px-2 py-1 bg-white/10 rounded font-bold">
+                    <span key={t} className="text-[10px] uppercase tracking-widest px-2 py-1 bg-background border border-card-border rounded font-bold text-muted">
                       {t}
                     </span>
                   ))}
@@ -75,6 +118,51 @@ export default function Projects() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-32">
+          <h2 className="text-4xl md:text-5xl font-black mb-16 tracking-tighter">
+            Hackathon <span className="text-coral">Projects</span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {hackathonProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative rounded-3xl overflow-hidden bg-card border border-card-border hover:border-coral/30 transition-all flex flex-col"
+              >
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
+                      <GitBranch size={20} />
+                    </a>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-black rounded-full hover:bg-gray-200 transition-all">
+                      <ExternalLink size={20} />
+                    </a>
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-coral transition-colors text-foreground">{project.title}</h3>
+                  <p className="text-muted text-sm mb-6 flex-grow">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tech.map((t) => (
+                      <span key={t} className="text-[10px] uppercase tracking-widest px-2 py-1 bg-background border border-card-border rounded font-bold text-muted">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

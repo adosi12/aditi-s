@@ -6,98 +6,75 @@ import { FileText, Video, ExternalLink, Download } from 'lucide-react';
 
 import learningData from '@/data/learning.json';
 
-const cheatsheets = learningData.cheatsheets;
-const courses = learningData.courses;
+const categories = [
+  { id: 'all', name: 'All Resources' },
+  { id: 'agentic-ai', name: 'Agentic AI' },
+  { id: 'full-stack', name: 'Full Stack' },
+  { id: 'blockchain', name: 'Blockchain' },
+];
 
-export default function LearningSpace() {
+export default function LearningPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-32 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="text-center mb-20"
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter">
-              Learning <span className="text-coral-500" style={{ color: '#ff6b6b' }}>Space</span>
+            <span className="text-coral font-mono text-sm uppercase tracking-widest block mb-4">// knowledge base</span>
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-foreground">
+              Learning <span className="text-coral">Space</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl">
-              My curated collection of technical resources, cheatsheets, and courses to help you level up your engineering skills.
+            <p className="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+              A curated collection of resources, notes, and tutorials I've gathered while exploring new technologies.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-16">
-            {/* Cheatsheets */}
-            <div>
-              <div className="flex items-center space-x-3 mb-8">
-                <FileText className="text-yellow-400" size={32} />
-                <h2 className="text-3xl font-bold">Cheatsheets & PDFs</h2>
-              </div>
-              <div className="space-y-6">
-                {cheatsheets.map((sheet, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group"
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold group-hover:text-yellow-400 transition-colors">
-                        {sheet.title}
-                      </h3>
-                      <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded font-bold tracking-widest">
-                        {sheet.type}
-                      </span>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-6">{sheet.description}</p>
-                    <a
-                      href={sheet.link}
-                      className="inline-flex items-center space-x-2 text-sm font-bold text-white hover:text-yellow-400 transition-colors"
-                    >
-                      <Download size={16} />
-                      <span>Download Resource</span>
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {learningData.courses.map((course: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="group relative bg-card border border-card-border rounded-3xl p-8 hover:border-coral/30 transition-all flex flex-col"
+              >
+                <div className="mb-6 flex justify-between items-start">
+                  <div className="p-3 bg-background border border-card-border rounded-2xl text-coral group-hover:scale-110 transition-transform">
+                    {course.type === 'Video' ? <Video size={24} /> : <FileText size={24} />}
+                  </div>
+                  <span className="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-background border border-card-border rounded-full text-muted">
+                    {course.category}
+                  </span>
+                </div>
+                
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold group-hover:text-coral transition-colors text-foreground">
+                    {course.title}
+                  </h3>
+                  <p className="text-muted text-sm mt-3 leading-relaxed">
+                    {course.description}
+                  </p>
+                </div>
 
-            {/* Courses */}
-            <div>
-              <div className="flex items-center space-x-3 mb-8">
-                <Video className="text-[#ff6b6b]" size={32} />
-                <h2 className="text-3xl font-bold">Video Courses</h2>
-              </div>
-              <div className="space-y-6">
-                {courses.map((course, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group"
+                <div className="mt-8 flex gap-4">
+                  <a
+                    href={course.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-foreground text-background rounded-xl font-bold text-sm hover:opacity-90 transition-all"
                   >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold group-hover:text-coral-400 transition-colors" style={{ color: 'inherit' }}>
-                        {course.title}
-                      </h3>
-                      <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded font-bold tracking-widest">
-                        {course.platform}
-                      </span>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-2">{course.description}</p>
-                    <p className="text-xs text-gray-500 mb-6">Duration: {course.duration}</p>
-                    <a
-                      href={course.link}
-                      className="inline-flex items-center space-x-2 text-sm font-bold text-white hover:text-[#ff6b6b] transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                      <span>Watch Now</span>
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                    <ExternalLink size={14} />
+                    <span>Watch Now</span>
+                  </a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

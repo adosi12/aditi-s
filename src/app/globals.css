@@ -3,19 +3,37 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-manrope: var(--font-manrope);
+  --color-coral: #ff6b6b;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted-color);
 }
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --coral: #ff6b6b;
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #f9f9f9;
+  --card-border: rgba(0, 0, 0, 0.1);
+  --muted-color: #666666;
 }
 
-@layer base {
-  body {
-    @apply bg-black text-white antialiased;
-    font-family: 'Manrope', sans-serif;
-  }
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --muted-color: #999999;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  @apply antialiased transition-colors duration-300;
+  font-family: 'Manrope', sans-serif;
 }
 
 /* Custom Scrollbar */
@@ -24,7 +42,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -38,9 +56,9 @@
 
 /* Utilities */
 .text-coral {
-  color: var(--coral);
+  color: #ff6b6b;
 }
 
 .bg-coral {
-  background-color: var(--coral);
+  background-color: #ff6b6b;
 }
