@@ -1,5 +1,6 @@
 [build]
-  publish = "aditi-s-main"
-  functions = "netlify/functions"
+  command = "npm run build"
+  publish = ".next"
 
-[build.environment]
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
