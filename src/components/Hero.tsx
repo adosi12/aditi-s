@@ -3,7 +3,22 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, params: any) => void;
+  }
+}
+
 export default function Hero() {
+  const trackClick = (label: string) => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'click', {
+        'event_category': 'Engagement',
+        'event_label': label
+      });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background text-foreground" id="about">
       {/* Background Blobs */}
@@ -41,6 +56,7 @@ export default function Hero() {
             <a
               href="/AditiDosi_Resume2026.docx"
               download
+              onClick={() => trackClick('Resume Download - Hero')}
               className="bg-card text-foreground border border-card-border px-8 py-3 rounded-full font-bold transition-all backdrop-blur-sm hover:bg-card/80"
             >
               Download Resume ↓
@@ -49,6 +65,7 @@ export default function Hero() {
               href="https://github.com/adosi12"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackClick('GitHub Profile - Hero')}
               className="bg-card text-foreground border border-card-border px-8 py-3 rounded-full font-bold transition-all backdrop-blur-sm hover:bg-card/80"
             >
               GitHub →

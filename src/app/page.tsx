@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -6,6 +8,15 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 
 export default function Home() {
+  const trackClick = (label: string) => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'click', {
+        'event_category': 'Engagement',
+        'event_label': label
+      });
+    }
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -31,6 +42,7 @@ export default function Home() {
                 <a
                   href="/AditiDosi_Resume2026.docx"
                   download
+                  onClick={() => trackClick('Resume Download - Section')}
                   className="bg-foreground text-background px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all shadow-xl shadow-foreground/5"
                 >
                   Download Resume ↓
@@ -68,6 +80,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-6">
             <a
               href="mailto:adosi12@gmail.com"
+              onClick={() => trackClick('Contact Email')}
               className="bg-foreground text-background px-10 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all shadow-xl shadow-foreground/5"
             >
               Send an Email
@@ -76,6 +89,7 @@ export default function Home() {
               href="https://linkedin.com/in/aditidosi"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackClick('LinkedIn Profile')}
               className="bg-[#0077b5] text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-[#006da5] transition-all shadow-xl shadow-[#0077b5]/20"
             >
               LinkedIn
