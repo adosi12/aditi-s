@@ -17,6 +17,24 @@
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6CR268Q6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-R6CR268Q6R');
+
+    // Custom Event Tracking Function
+    function trackClick(elementName) {
+      gtag('event', 'click', {
+        'event_category': 'Engagement',
+        'event_label': elementName
+      });
+    }
+  </script>
 </head>
 <body>
 
@@ -517,10 +535,10 @@
           <li><a href="cover-letter.html">Cover Letter</a></li>
         </ul>
         <div class="resume-btn-group">
-          <a href="AditiDosi_Resume2025.pdf" download class="btn-download">
+          <a href="AditiDosi_Resume2025.pdf" download class="btn-download" onclick="trackClick('Resume Download - Footer')">
             <span class="btn-download-icon">↓</span> Download Resume
           </a>
-          <a href="AditiDosi_Resume2025.pdf" target="_blank" class="btn-view">
+          <a href="AditiDosi_Resume2025.pdf" target="_blank" class="btn-view" onclick="trackClick('Resume View - Footer')">
             View PDF ↗
           </a>
         </div>
@@ -587,6 +605,19 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-logo">ADITI DOSI</div>
+  <p class="footer-text">Built with ♥ · Full Stack Developer · Pune, India · 2025</p>
+</footer>
+
+<!-- ─── SCROLL UP ─── -->
+<button class="scroll-up" id="scroll-up" aria-label="Scroll to top">
+  <img src="assets/icons/icons8-upward-arrow.gif" alt="Scroll up" class="scroll-up-img" />
+</button>
+
+<!-- JavaScript -->
+<script src="assets/js/app.js"></script>
+
+</body>
+</html> oter-logo">ADITI DOSI</div>
   <p class="footer-text">Built with ♥ · Full Stack Developer · Pune, India · 2025</p>
 </footer>
 
