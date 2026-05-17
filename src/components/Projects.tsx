@@ -5,6 +5,22 @@ import { GitBranch, ExternalLink, Brain, Sprout, Newspaper, Mic, PenTool } from 
 
 const projects = [
   {
+    title: 'TaxMaster India',
+    description: 'A gamified MCQ platform built with Flutter to educate users on Indian tax laws, featuring real-time leaderboards.',
+    tech: ['Flutter', 'Firebase', 'Dart', 'Gamification'],
+    image: '/assets/images/TaxMaster-India.png',
+    github: '#', // Private repo
+    live: 'https://taxmaster-india.netlify.app/',
+  },
+  {
+    title: 'AI For Medicine',
+    description: 'AI-powered medical concierge providing report scanning, symptom triage, and personalized diet plans using Gemini AI.',
+    tech: ['FastAPI', 'React', 'Gemini AI', 'PostgreSQL'],
+    image: '/assets/images/AI_For_Medicine.png',
+    github: 'https://github.com/adosi12/AI-For-Medicine',
+    live: 'https://eternal-cocoa-380210.firebaseapp.com/',
+  },
+  {
     title: 'Freehold Price Predictor',
     description: 'Full-stack real estate price prediction website with a Python/Flask backend serving an ML regression model.',
     tech: ['Python', 'Flask', 'ML', 'React'],
