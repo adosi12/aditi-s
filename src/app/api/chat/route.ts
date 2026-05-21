@@ -1,4 +1,4 @@
-import { google } from '@ai-sdk/google';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText, tool, convertToModelMessages } from 'ai';
 import { z } from 'zod';
 
@@ -9,9 +9,14 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const modelName = process.env.GEMINI_MODEL || process.env.NEXT_PUBLIC_GEMINI_MODEL || 'gemini-2.5-flash';
+  const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+  const googleProvider = createGoogleGenerativeAI({
+    apiKey: apiKey,
+  });
 
   const result = streamText({
-    model: google(modelName),
+    model: googleProvider(modelName),
     messages: await convertToModelMessages(messages),
     system: `
       You are Aditi Dosi's AI Portfolio Assistant (Copilot). 
