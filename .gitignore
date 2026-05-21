@@ -38,3 +38,6 @@ next-env.d.ts
 
 # Temp
 temp-next-app/
+
+# Antigravity CLI
+.antigravitycli/

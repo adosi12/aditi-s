@@ -31,6 +31,7 @@ const manrope = Manrope({
 });
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import AICopilot from "@/components/AICopilot";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -73,6 +74,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <AICopilot />
         </ThemeProvider>
       </body>
     </html>
