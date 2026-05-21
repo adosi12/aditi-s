@@ -6,6 +6,7 @@ import { FileText, Video, ExternalLink, ArrowRight, Brain, Cpu, Code } from 'luc
 import Link from 'next/link';
 
 import { learningProjects } from '@/data/learningProjects';
+import DevTerminal from '@/components/DevTerminal';
 
 export default function LearningPage() {
   return (
@@ -17,7 +18,7 @@ export default function LearningPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
             <span className="text-coral font-mono text-sm uppercase tracking-widest block mb-4">// knowledge base</span>
             <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-foreground">
@@ -26,6 +27,16 @@ export default function LearningPage() {
             <p className="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
               Detailed technical deep-dives, architectural breakdowns, and future roadmaps for my key projects.
             </p>
+          </motion.div>
+
+          {/* Interactive Playground Terminal */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mb-24"
+          >
+            <DevTerminal />
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
